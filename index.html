@@ -3,35 +3,32 @@
 <head>
 	<title></title>
 	<style>
-		video{
+		div{
 		height: 720px;
 		width: 1080px;
 	}
 	</style>
-	<script type="text/javascript">
-	window.onload=function(){if(document.createElement('video').canPlayType('application/vnd.apple.mpegURL')){
-		var element = document.getElementById("videoPlayer");
-  element.classList.remove("data-dashjs-player");
-	}}
-</script>
+	<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clappr.dash-shaka-playback/latest/dash-shaka-playback.js"></script>
 </head>
 <body>
-	<div>
-<video data-dashjs-player controls id="videoPlayer" loop="true" autoplay="true" >
-                    <source src="output/output.mpd" type="application/dash+xml">
-	<source src="output2/input.m3u8" type="application/x-mpegURL">
-                </video>
-</div>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-	
+	<div id="player"></div>
+<script type="text/javascript">
+	window.onload=function(){
+		 var player = new Clappr.Player(
+        {
+          sources: ["output2/input.m3u8", "output/output.mpd"],
+          plugins: [DashShakaPlayback],
+          // now, if you want to force flash you need to put Clappr.FlasHLS on 
+          // this list first otherwise it'll use hls.js
+          parentId: '#player'
+        });
+	}
+</script>
 </body>
 </html>
 <!-- 
 ffmpeg -y -i "input.mp4" -c:a aac -b:a 192k -vn "output_audio.m4a"
 ffmpeg -y -i "input.mp4" -preset slow -tune film -vsync passthrough -an -c:v libx264 -x264opts keyint=25:min-keyint=25:no-scenecut -crf 22  -maxrate 5000k -bufsize 10000k -pix_fmt yuv420p -f mp4 "output_5000.mp4"
   ffmpeg -y -i "input.mp4" -preset slow -tune film -vsync passthrough -an -c:v libx264 -x264opts keyint=25:min-keyint=25:no-scenecut -crf 23  -maxrate 2000k -bufsize 4000k -pix_fmt yuv420p -f mp4 "output_2000.mp4"
-    MP4Box -dash 5000 -rap -frag-rap  -bs-switching no -profile "dashavc264:live" "output_5000.mp4" "output_3000.mp4"  "output_audio.m4a" -out "output/output.mpd"
- Daca nu vreti sa se imparta in multe fragmente:
-    MP4Box -dash 5000 -rap -frag-rap  -bs-switching no -profile onDemand "output_5000.mp4" "output_3000.mp4"  "output_audio.m4a" -out "output/output.mpd"
-
   -->
