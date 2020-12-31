@@ -14,7 +14,6 @@
 <body>
 	<div id="player"></div>
 <script type="text/javascript">
-	window.onload=function(){
 		 var player = new Clappr.Player(
         {
           sources: ["output2/input.m3u8", "output/output.mpd"],
@@ -23,7 +22,6 @@
           // this list first otherwise it'll use hls.js
           parentId: '#player'
         });
-	}
 </script>
 </body>
 </html>
