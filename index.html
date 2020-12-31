@@ -8,6 +8,12 @@
 		width: 1080px;
 	}
 	</style>
+	<script type="text/javascript">
+	window.onload=function(){if(document.createElement('video').canPlayType('application/vnd.apple.mpegURL')){
+		var element = document.getElementById("videoPlayer");
+  element.classList.remove("data-dashjs-player");
+	}}
+</script>
 </head>
 <body>
 	<div>
@@ -17,12 +23,7 @@
                 </video>
 </div>
 <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-	<script type="text/javascript">
-	window.onload=function(){if(document.createElement('video').canPlayType('application/vnd.apple.mpegURL')){
-		var element = document.getElementById("videoPlayer");
-  element.classList.remove("data-dashjs-player");
-	}}
-</script>
+	
 </body>
 </html>
 <!-- 
