@@ -2,27 +2,31 @@
 <html>
 <head>
 	<title></title>
-	<style>
+	<!-- <style>
 		div{
 		height: 720px;
 		width: 1080px;
 	}
-	</style>
-	<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/clappr.dash-shaka-playback/latest/dash-shaka-playback.js"></script>
+	</style> -->
+	<!-- <script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clappr.dash-shaka-playback/latest/dash-shaka-playback.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/3.0.6/shaka-player.compiled.js"></script>
+    <script src="shaka.js"></script>
 </head>
 <body>
-	<div id="player"></div>
-<script type="text/javascript">
+	<div>
+		<video id="video" width="1080" controls autoplay></video>
+	</div>
+<!-- <script type="text/javascript">
 		 var player = new Clappr.Player(
         {
-          sources: ["output2/index.m3u8", "output/output.mpd"],
+          sources: ["output2/input.m3u8", "output/output.mpd"],
           plugins: [DashShakaPlayback],
           // now, if you want to force flash you need to put Clappr.FlasHLS on 
           // this list first otherwise it'll use hls.js
           parentId: '#player'
         });
-</script>
+</script> -->
 </body>
 </html>
 <!-- 
